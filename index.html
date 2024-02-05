@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            display: grid;
+            width: 500px;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+            border: 1px solid black;
+        }
+
+        .item {
+            background-color: antiquewhite;
+            height: 50px;
+            border: 1px solid black;
+        }
+
+        .box{
+            display: flex;
+            margin: 15px;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <main class="main">
+        <div class="container" id="container">
+        </div>
+
+        <div class="box">
+            <audio controls id="audio"></audio>
+            <input type="file" name="" id="input" accept=".mp3">
+        </div>
+    </main>
+
+    <script>
+        const $container = document.getElementById('container');
+        for (let i = 0; i < 36; i++) {
+            const item = document.createElement('div');
+            item.classList.add('item');
+            $container.appendChild(item);
+        }
+
+        const $audio = document.getElementById('audio');
+        const $input = document.getElementById('input');
+
+        $input.addEventListener('change', (event) => {
+           const file = event.target.files[0]
+           const url = URL.createObjectURL(file);
+            $audio.src = url;
+        })
+
+        $audio.addEventListener('playing', () => {
+            // console.log('Audio playing');
+            // const audioContext = new AudioContext();
+            // const source = audioContext.createMediaElementSource($audio);
+            // const analyser = audioContext.createAnalyser();
+            // console.log(analyser)
+        })
+
+
+    </script>
+
+
+</body>
+
+</html>
